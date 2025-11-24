@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/carols/static/css/main.1a806311.css",
+    "main.js": "/carols/static/js/main.1c815d83.js",
+    "index.html": "/carols/index.html",
+    "main.1a806311.css.map": "/carols/static/css/main.1a806311.css.map",
+    "main.1c815d83.js.map": "/carols/static/js/main.1c815d83.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1a806311.css",
+    "static/js/main.1c815d83.js"
+  ]
+}
