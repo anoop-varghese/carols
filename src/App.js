@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import Clarity from '@microsoft/clarity';
 import "./App.css";
 import { songs, lyrics } from "./data/songs";
 
 function App() {
+
+  const projectId = "ub3q2e0is3"
+  Clarity.init(projectId);
+  
   const [currentIndex, setCurrentIndex] = useState(null);
 
   const [lightsOn, setLightsOn] = useState(() => {
-    // initialize all lights on by default
+    // initialize all lights on by default  
     const keys = new Set([
       "small-0",
       "small-1",
