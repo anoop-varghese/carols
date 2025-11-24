@@ -16,7 +16,8 @@ export const songs = [
   'Poyidam',
   'Ponnallle poovalle ',
   'Anaswara Sneha Swaroopanayi',
-  'Daivam pirakkunnu'
+  'Daivam pirakkunnu',
+  'Dhanumaasa Kulirinte'
 
 ];
 
@@ -345,5 +346,31 @@ Daivathin daasare onnu cheroo (2) (Daivam pirakkunnu)
 Pakalonu munpe pithaavinte hrithile.. 
 Thriyeka soonuvaamudhaya sooryan (2) 
 Praabhava poornnanaayuyarunnitha... 
-Prathaapamodinneshu naathan.. (2) (Daivam pirakkunnu)`
+Prathaapamodinneshu naathan.. (2) (Daivam pirakkunnu)
+`,
+`Dhanumaasa kulirinte eeranam nishaile
+Jaathanaai jaathanaai...
+Innu Bethlehem pulkootilaai
+Davidin makanaai Mariyathin puthranai
+Lokathin rajavaai
+Innu Sree Yeshu jaathanaai (×2)
+
+Nasarethu graamathil
+Daavidin pattanathil
+Santhosha sudhinamaanu... innu
+Santhosha sudhinamaanu...
+
+Ee nalla raathriyil ee nalla yaamathil
+Ellarum paadidunnu...
+Njangal ellarum paadidunnu... (×2)
+
+Maalokarellarum paadipukazhthunna
+Eeshante jananathinu... innu
+Eeshante jananathinu...
+Santhosha geethikalaal swarloka paalakane
+Vaazhthi sthuthicheedunnu...
+Njangal vaazhthi sthuthicheedunnu... (×2)
+
+Dhanumaasa kulirinte...
+`
 ];
