@@ -1,0 +1,165 @@
+/* Christmas themed styles for Carols 2025 */
+
+:root{
+  --green:#0b6623;
+  --pine:#0a4b2a;
+  --berry:#b91d47;
+  --gold:#f2c94c;
+  --card-bg: rgba(255,255,255,0.9);
+}
+
+.carols-app{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background: radial-gradient(circle at 10% 10%, #08331a 0%, #0b2e16 20%, #061b0f 60%, #030807 100%);
+  color: #fff;
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  padding: 0 1rem 3rem;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Forest at top */
+.forest{
+  position: relative;
+  width: 100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:18px;
+  pointer-events:none;
+  z-index:1;
+  margin-bottom: 12px;
+  padding-top: 6px;
+}
+.forest .tree{ transform-origin: 50% 100%; opacity:0.95; }
+.tree--xsmall{ width:56px; height:auto; animation: sway 4.8s ease-in-out infinite; animation-delay: 0.2s; }
+.tree--small{ width:72px; height:auto; animation: sway 6s ease-in-out infinite; animation-delay: 0.1s; }
+.tree--small-2{ width:68px; height:auto; animation: sway 5.6s ease-in-out infinite; animation-delay: 0.45s; }
+.tree--medium{ width:92px; height:auto; animation: sway 7s ease-in-out infinite; animation-delay: 0.3s; }
+.tree--large{ width:130px; height:auto; animation: sway 8.5s ease-in-out infinite; animation-delay: 0.0s; }
+
+/* tree lights */
+.tree .lights { pointer-events: none; }
+.light{ filter: drop-shadow(0 0 6px rgba(255,255,255,0.08)); opacity:0.95; }
+.light--red{ fill:#e53935; }
+.light--green{ fill:#2e7d32; }
+.light--blue{ fill:#1e88e5; }
+.light--yellow{ fill:#f2c94c; }
+.light--yellow, .light--red, .light--green, .light--blue{ transform-origin: center; animation: twinkle 2.6s linear infinite; }
+.tree--small .light{ animation-duration:2.8s; }
+.tree--medium .light{ animation-duration:2.2s; }
+.tree--large .light{ animation-duration:3.2s; }
+.tree--xsmall .light{ animation-duration:2s; }
+.tree--small-2 .light{ animation-duration:2.6s; }
+
+@keyframes twinkle{
+  0%{ opacity:0.18; transform:scale(0.9); }
+  40%{ opacity:1; transform:scale(1.05); }
+  60%{ opacity:0.7; transform:scale(0.95); }
+  100%{ opacity:0.18; transform:scale(0.9); }
+}
+
+.hero{
+  text-align:center;
+  padding:2rem 1rem 1rem;
+  margin-top:0.5rem;
+}
+.church{
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:1px;
+  font-size:1.05rem;
+  text-transform:uppercase;
+  opacity:0.95;
+}
+.app-title{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin:0.25rem 0 0.25rem;
+  color: #fff;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+.lead{
+  margin:0.25rem 0 0.75rem;
+  color: #e9f5ee;
+  font-size:1rem;
+}
+
+.content{ width:100%; max-width:1000px; }
+.songs{ background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); padding:1rem; border-radius:12px; backdrop-filter: blur(6px); }
+.section-title{ color:var(--gold); margin:0 0 0.5rem 0; font-weight:700; }
+
+/* Player area */
+.controls{ display:flex; gap:8px; align-items:center; }
+.btn{ background:transparent; border:1px solid rgba(255,255,255,0.14); color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600; display:inline-flex; align-items:center; gap:8px; }
+.btn svg{ display:block; width:16px; height:16px; flex:0 0 auto; }
+.btn .btn-label{ line-height:1; }
+.btn:disabled{ opacity:0.45; cursor:not-allowed; }
+.btn.primary{ background:var(--gold); color:#07120a; border-color:rgba(0,0,0,0.15); }
+
+
+.song-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.song-card{
+  display:flex; align-items:center; gap:12px; padding:12px; background:var(--card-bg); color:#07120a; border-radius:10px; box-shadow: 0 6px 20px rgba(2,6,2,0.45);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.song-card:hover{ transform: translateY(-6px); box-shadow: 0 14px 30px rgba(2,6,2,0.55); }
+.song-index{ width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:var(--pine); color:var(--gold); font-weight:700; box-shadow: inset 0 -4px 6px rgba(0,0,0,0.25); }
+.song-name{ font-weight:600; font-size:1rem; }
+.song-card.selected{ outline: 3px solid rgba(242,201,76,0.18); box-shadow: 0 18px 38px rgba(2,6,2,0.6); transform: translateY(-6px); }
+
+.post-controls{ margin-top:1rem; display:flex; gap:16px; flex-direction:column; align-items:stretch; }
+.lyrics{ margin-top:12px; padding:12px; border-radius:10px; background: rgba(255,255,255,0.02); color:#e9f5ee; min-height:80px; }
+.lyrics-title{ margin:0 0 6px 0; color:var(--gold); }
+.lyrics-body{ white-space:pre-wrap; margin:0; color:#f7fbf7; font-family: inherit; }
+.lyrics-empty{ color:#cfe6d4; }
+
+.footer{ margin-top:1.25rem; color:#cfe6d4; font-size:0.95rem; opacity:0.95; }
+
+/* Snow effect */
+.snow{ position:fixed; pointer-events:none; inset:0; z-index:0; }
+.snow::before, .snow::after{ content:""; position:absolute; inset:0; background-image: radial-gradient(white 1px, rgba(255,255,255,0) 1px); background-size: 6px 6px; opacity:0.06; animation: drift 12s linear infinite; }
+.snow::after{ background-size: 10px 10px; opacity:0.03; animation-duration:24s; }
+@keyframes drift{ from{ transform: translateY(-10%); } to{ transform: translateY(110%); } }
+
+/* Positioned decorative SVGs */
+.decor-left{
+  position: absolute;
+  left: 12px;
+  bottom: 18%;
+  z-index: 2;
+  opacity: 0.95;
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite;
+}
+
+.candy{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  top: calc(50% - 40px);
+  z-index: 3;
+  opacity: 0.98;
+}
+
+@keyframes sway{
+  0%{ transform: rotate(-2deg); }
+  50%{ transform: rotate(2.5deg); }
+  100%{ transform: rotate(-2deg); }
+}
+@keyframes floaty{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-6px); }
+  100%{ transform: translateY(0px); }
+}
+
+/* Responsive tweaks */
+@media (max-width:560px){
+  .song-card{ padding:10px; }
+  .song-name{ font-size:0.95rem; }
+  .decor-left, .candy{ display:none; }
+}
+
