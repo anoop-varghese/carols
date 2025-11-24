@@ -151,6 +151,10 @@
   font-size: 2.1rem;
   text-transform: uppercase;
   opacity: 0.98;
+  margin-bottom: 0;
+}
+.churchCity{
+  margin-bottom: 16px;
 }
 .app-title {
   font-family: "Cinzel", "Playfair Display", serif;
