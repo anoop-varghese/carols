@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import Clarity from '@microsoft/clarity';
+import Clarity from "@microsoft/clarity";
 import "./App.css";
 import { songs, lyrics } from "./data/songs";
 
 function App() {
-
-  const projectId = "ub3q2e0is3"
+  const projectId = "ub3q2e0is3";
   Clarity.init(projectId);
-  
+
   const [currentIndex, setCurrentIndex] = useState(null);
 
   const [lightsOn, setLightsOn] = useState(() => {
-    // initialize all lights on by default  
+    // initialize all lights on by default
     const keys = new Set([
       "small-0",
       "small-1",
@@ -394,26 +393,33 @@ function App() {
         {currentIndex == null && (
           <section className="songs">
             <h2 className="section-title">Song List</h2>
-            <ul className="song-list">
-              {songs.map((song, idx) => (
-                <li
-                  key={song}
-                  className={`song-card ${
-                    currentIndex === idx ? "selected" : ""
-                  }`}
-                  aria-posinset={idx + 1}
-                  aria-setsize={songs.length}
-                  tabIndex={0}
-                  onClick={() => selectSong(idx)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") selectSong(idx);
-                  }}
-                >
-                  <div className="song-index">{idx + 1}</div>
-                  <div className="song-name">{song}</div>
-                </li>
-              ))}
-            </ul>
+            <div className="subtitle">Select a song to view lyrics</div>
+            {(() => {
+              const sortedSongs = [...songs].sort((a, b) => a.localeCompare(b));
+              return (
+                <ul className="song-list">
+                  {sortedSongs.map((song, idx) => (
+                    <li
+                      key={song}
+                      className={`song-card ${
+                        currentIndex === idx ? "selected" : ""
+                      }`}
+                      aria-posinset={idx + 1}
+                      aria-setsize={sortedSongs.length}
+                      tabIndex={0}
+                      onClick={() => setCurrentIndex(idx)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ")
+                          setCurrentIndex(idx);
+                      }}
+                    >
+                      <div className="song-index">{idx + 1}</div>
+                      <div className="song-name">{song}</div>
+                    </li>
+                  ))}
+                </ul>
+              );
+            })()}
           </section>
         )}
 
@@ -482,17 +488,33 @@ function App() {
 
           <div className="lyrics">
             {currentIndex == null ? (
-              <div className="lyrics-empty">Select a song to view lyrics</div>
-            ) : (
-              <div>
-                <h3 className="lyrics-title">{songs[currentIndex]}</h3>
-                <pre className="lyrics-body">{lyrics[currentIndex]}</pre>
+              <div className="lyrics-empty">
+                Nothing to display here 🙁. Please select any song from top
               </div>
+            ) : (
+              (() => {
+                const sortedSongs = [...songs].sort((a, b) =>
+                  a.localeCompare(b)
+                );
+                return (
+                  <div>
+                    <h3 className="lyrics-title">
+                      {currentIndex + 1} - {sortedSongs[currentIndex]}
+                    </h3>
+                    <pre className="lyrics-body">{lyrics[currentIndex]}</pre>
+                  </div>
+                );
+              })()
             )}
           </div>
         </section>
       </main>
       <div className="snow" aria-hidden="true" />
+      <footer className="footer">
+        <div className="copyright">
+          &copy; {new Date().getFullYear()} St Marys OSC
+        </div>
+      </footer>
     </div>
   );
 }
