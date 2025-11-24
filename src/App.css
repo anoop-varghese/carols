@@ -34,12 +34,12 @@
   margin-bottom: 12px;
   padding-top: 6px;
 }
-.forest .tree{ transform-origin: 50% 100%; opacity:0.95; }
-.tree--xsmall{ width:56px; height:auto; animation: sway 4.8s ease-in-out infinite; animation-delay: 0.2s; }
-.tree--small{ width:72px; height:auto; animation: sway 6s ease-in-out infinite; animation-delay: 0.1s; }
-.tree--small-2{ width:68px; height:auto; animation: sway 5.6s ease-in-out infinite; animation-delay: 0.45s; }
-.tree--medium{ width:92px; height:auto; animation: sway 7s ease-in-out infinite; animation-delay: 0.3s; }
-.tree--large{ width:130px; height:auto; animation: sway 8.5s ease-in-out infinite; animation-delay: 0.0s; }
+.forest .tree{ transform-origin: 50% 100%; }
+.tree--xsmall{ width:56px; height:auto; animation: sway 3.8s ease-in-out infinite; animation-delay: 0.2s; }
+.tree--small{ width:72px; height:auto; animation: sway 5s ease-in-out infinite; animation-delay: 0.1s; }
+.tree--small-2{ width:68px; height:auto; animation: sway 2.6s ease-in-out infinite; animation-delay: 0.45s; }
+.tree--medium{ width:92px; height:auto; animation: sway 3s ease-in-out infinite; animation-delay: 0.3s; }
+.tree--large{ width:130px; height:auto; animation: sway 4.5s ease-in-out infinite; animation-delay: 0.0s; }
 
 /* tree lights */
 .tree .lights { pointer-events: none; }
