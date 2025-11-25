@@ -1,0 +1,84 @@
+/* Forest and tree visuals */
+.forest {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  pointer-events: none;
+  z-index: 1;
+  margin-bottom: 12px;
+  padding-top: 6px;
+}
+.forest .tree {
+  transform-origin: 50% 100%;
+}
+.tree--xsmall {
+  width: 56px;
+  height: auto;
+  animation: sway 3.8s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.tree--small {
+  width: 72px;
+  height: auto;
+  animation: sway 5s ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+.tree--small-2 {
+  width: 68px;
+  height: auto;
+  animation: sway 2.6s ease-in-out infinite;
+  animation-delay: 0.45s;
+}
+.tree--medium {
+  width: 92px;
+  height: auto;
+  animation: sway 3s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+.tree--large {
+  width: 130px;
+  height: auto;
+  animation: sway 4.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+/* tree lights */
+.tree .lights {
+  pointer-events: none;
+}
+.light {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.08));
+  opacity: 0.95;
+}
+.light--red { fill: #e53935; }
+.light--green { fill: #2e7d32; }
+.light--blue { fill: #1e88e5; }
+.light--yellow { fill: #f2c94c; }
+.light--yellow,
+.light--red,
+.light--green,
+.light--blue {
+  transform-origin: center;
+  animation: twinkle 2.6s linear infinite;
+}
+.tree--small .light { animation-duration: 2.8s; }
+.tree--medium .light { animation-duration: 2.2s; }
+.tree--large .light { animation-duration: 3.2s; }
+.tree--xsmall .light { animation-duration: 2s; }
+.tree--small-2 .light { animation-duration: 2.6s; }
+
+@keyframes twinkle {
+  0% { opacity: 0.18; transform: scale(0.9); }
+  40% { opacity: 1; transform: scale(1.05); }
+  60% { opacity: 0.7; transform: scale(0.95); }
+  100% { opacity: 0.18; transform: scale(0.9); }
+}
+
+@keyframes sway {
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2.5deg); }
+  100% { transform: rotate(-2deg); }
+}
