@@ -1,4 +1,4 @@
-export default `Daivam pirakkunnu $ Daivam pirakkunnu 
+const song = `Daivam pirakkunnu $ Daivam pirakkunnu 
 Manushyanaay bethlahemil 
 Manju peyyunna malarmadakkil 
 Halleluya Halleluya.. 
@@ -18,3 +18,5 @@ Pakalonu munpe pithaavinte hrithile..
 Thriyeka soonuvaamudhaya sooryan (2) 
 Praabhava poornnanaayuyarunnitha... 
 Prathaapamodinneshu naathan.. (2) (Daivam pirakkunnu)`
+
+export default song;

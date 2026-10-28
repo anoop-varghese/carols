@@ -1,4 +1,4 @@
-export default `Prabha Thooki $ La la la... la la la la... la la la... la la la... (×13) 
+const song = `Prabha Thooki $ La la la... la la la la... la la la... la la la... (×13) 
 
 Prabha thooki nava thaaram mannil santhoshame, 
 Puthu manam naru manam choriyumee velayil. 
@@ -13,3 +13,5 @@ Mannil shaapam neekiduvan. (×2)                (Prabha thooki...)
 
 Oh... neela vaanam thelinju pulkudilil aattidayar, 
 Kazhcha vechu vanangi ninnu. (×2)              (Prabha thooki...)`
+
+export default song;

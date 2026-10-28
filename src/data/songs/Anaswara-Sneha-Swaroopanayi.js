@@ -1,4 +1,4 @@
-export default `Anaswara Sneha Swaroopanayi $ Anaswara Sneha Swaroopanayi 
+const song = `Anaswara Sneha Swaroopanayi $ Anaswara Sneha Swaroopanayi 
 Anupama Deepthi Chorinjiduvan 
 Aadiyum Andhavum Ariyunnavan 
 Aagathanaayitha Bethlahemil (2) 
@@ -20,3 +20,5 @@ Mannavanayitha Vannu Pirannu
 
 Imbamayi Paaduka.......... 
 Anaswara Sneha.............`
+
+export default song;

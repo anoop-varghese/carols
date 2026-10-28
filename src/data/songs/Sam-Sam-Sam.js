@@ -1,4 +1,4 @@
-export default `Sam Sam Sam $ Sam Sam Sam Praami Thangum Ingum 
+const song = `Sam Sam Sam $ Sam Sam Sam Praami Thangum Ingum 
 Thingalai..(2) Nasaraajan Pashukootil Piranthaye 
 (2)Yeshu – 
 
@@ -15,3 +15,5 @@ Aakashathil..(2)
 
 Paatugalum Paadidunnu Jayamode 
 Yeshu- Paatugalum Paadidunnu Jayamode`
+
+export default song;

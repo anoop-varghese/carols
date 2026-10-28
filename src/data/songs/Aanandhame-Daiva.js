@@ -1,4 +1,4 @@
-export default `Aanandhame! Daiva $ Aanandhame! Daiva soonuvin jananam, Akhilarkum aanandame..(2) 
+const song = `Aanandhame! Daiva $ Aanandhame! Daiva soonuvin jananam, Akhilarkum aanandame..(2) 
 Mashiha marthya roopamettudan, Mashihayude bethelem puri..(2) 
 Aanandhame!..(1)
 
@@ -9,3 +9,5 @@ Aanandhame!..(1)
 Doothar ganam, bhoomiyil vanna ravil, Manarvak alputhamaay..(2) 
 Janicho bhuvil loka rakshakan, Bethelem ille pashushalayil..(2) 
 Aanandhame!..(1)`
+
+export default song;

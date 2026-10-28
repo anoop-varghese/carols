@@ -1,4 +1,4 @@
-export default `Dhanumaasa Kulirinte $ Dhanumaasa kulirinte eeranam nishaile
+const song = `Dhanumaasa Kulirinte $ Dhanumaasa kulirinte eeranam nishaile
 Jaathanaai jaathanaai...
 Innu Bethlehem pulkootilaai
 Davidin makanaai Mariyathin puthranai
@@ -22,3 +22,5 @@ Vaazhthi sthuthicheedunnu...
 Njangal vaazhthi sthuthicheedunnu... (×2)
 
 Dhanumaasa kulirinte...`
+
+export default song;

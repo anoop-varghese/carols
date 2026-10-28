@@ -1,4 +1,4 @@
-export default `Rajadhi Rajan $ Rajadhi Rajan Piranallo, 
+const song = `Rajadhi Rajan $ Rajadhi Rajan Piranallo, 
 Bethelehemile Pulkootil(2) Raajadhi Rajan…
 
 Piranallo Davidususdan, 
@@ -12,3 +12,5 @@ Malakhavridham paadi stuthichu(2) Raajadhi Rajan…
 
 Ee nalla dhinam, Ee punya dhinam, 
 Ee divya dhinam, namukkai (2) Raajadhi Rajan…`
+
+export default song;

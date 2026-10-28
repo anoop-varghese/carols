@@ -1,4 +1,4 @@
-export default `Mariyaame naarigalil $ Mariyaame naarigalil nee bhagyavathi 
+const song = `Mariyaame naarigalil $ Mariyaame naarigalil nee bhagyavathi 
 Jagadheeshan nin udhare Rupam 
 pundathinaal Eri thee thann naduvingal 
 Eriyaathe oru thari pol 
@@ -17,3 +17,5 @@ kuude Vedukalil ettam paavana
 mohana veede(2) 
 Krobenmaar sroppenmaar Enni dhuthaganam 
 nee aagum mani arayil Kaavalu ninnille Mariyame ../ La la la`
+
+export default song;

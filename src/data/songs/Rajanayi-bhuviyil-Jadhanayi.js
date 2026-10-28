@@ -1,4 +1,4 @@
-export default `Rajanayi bhuviyil Jadhanayi $ Rajanayi bhuviyil Jadhanayi, Bethelem Thannilai Inniravil 
+const song = `Rajanayi bhuviyil Jadhanayi $ Rajanayi bhuviyil Jadhanayi, Bethelem Thannilai Inniravil 
 Padidam koodidam 
 Rajane kanuvan … (2) 
 Rajanayi …..inniravil 
@@ -21,3 +21,5 @@ needuvin theduvin jeevamargam
 
 Nandhananai manu nandhananai … (2) 
 Paadidam kudidam rajane kanuvaan …(2) Rajani..`
+
+export default song;

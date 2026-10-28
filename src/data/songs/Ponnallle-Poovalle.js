@@ -1,4 +1,4 @@
-export default `Ponnallle poovalle $ Ponnalle Poovalle Poonkathiralle 
+const song = `Ponnallle poovalle $ Ponnalle Poovalle Poonkathiralle 
 Manninte Punyamalle…. (2) 
 Sankeerthanangalaal, Saubhagya Geethiyaal 
 Mannil Vanna Bhagyamalle ….(2) - (ponnalle poovalle….)
@@ -24,3 +24,5 @@ Aarthonnu Padaam, Aamodhamode
 Raajaavine Vanangaam 
 Ee Nalla Kalam, Aakhoshamakkaam 
 Ravilum, Pakalilum….  (ponnalle poovalle….)`
+
+export default song;

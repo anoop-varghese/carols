@@ -1,4 +1,4 @@
-export default `Poyidam $ Poyidam poyidam, 
+const song = `Poyidam $ Poyidam poyidam, 
 Bethlehemile pulkootil, 
 Lokathin rekshakane kandu vanangidam. 
 Paapangal pokidaan paaridathil vannavane, 
@@ -18,3 +18,5 @@ Aattidayar kootamayi bethlehem guha thannil.
 Kazhcha vechu rajakanmaar devane vanangi. 
 Vaanidavum paaridavum onnayi paadi geetham. (×2) 
 Vaa vaa nee enn ullil ...vaa vaa nee enn hrithil.  (×2)  (Poyidam poyidam...)`
+
+export default song;
