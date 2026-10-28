@@ -1,7 +1,42 @@
 .hero {
   text-align: center;
+  translate: 0 var(--hero-parallax-y, 0px);
+  opacity: var(--hero-parallax-opacity, 1);
   padding: 2rem 1rem 1rem;
   margin-top: 0.5rem;
+  isolation: isolate;
+  width: min(100%, 900px);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2rem 0 -4rem;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 47%, rgba(241, 203, 121, .16), transparent 62%);
+}
+.hero-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--gold);
+}
+.hero-sparkles span {
+  position: absolute;
+  display: block;
+  opacity: .65;
+  font-size: clamp(.65rem, 1.8vw, 1.1rem);
+  text-shadow: 0 0 14px rgba(241, 203, 121, .55);
+  animation: sparkle-breathe 5s ease-in-out infinite;
+}
+.hero-sparkles span:nth-child(1) { top: 18%; left: 13%; animation-delay: -.8s; }
+.hero-sparkles span:nth-child(2) { top: 57%; left: 7%; animation-delay: -2.5s; }
+.hero-sparkles span:nth-child(3) { top: 25%; right: 13%; animation-delay: -1.7s; }
+.hero-sparkles span:nth-child(4) { top: 66%; right: 8%; animation-delay: -3.6s; }
+
+@keyframes sparkle-breathe {
+  0%, 100% { opacity: .3; transform: scale(.85); }
+  50% { opacity: .8; transform: scale(1.12); }
 }
 .church {
   font-family: "Cinzel", "Playfair Display", serif;
@@ -29,4 +64,17 @@
   color: #e9f5ee;
   font-size: 1.05rem;
   max-width: 780px;
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 1.5rem .25rem .75rem; }
+  .hero::before { inset: -1rem -1rem -1.5rem; }
+  .hero-sparkles span:nth-child(1) { left: 2%; }
+  .hero-sparkles span:nth-child(2) { left: 5%; top: 78%; }
+  .hero-sparkles span:nth-child(3) { right: 2%; }
+  .hero-sparkles span:nth-child(4) { right: 5%; top: 78%; }
+  .church { font-size: 1.5rem; }
+  .churchCity { margin-bottom: .5rem; }
+  .app-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
+  .lead { font-size: .9rem; line-height: 1.5; }
 }

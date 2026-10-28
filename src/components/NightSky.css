@@ -1,0 +1,110 @@
+.night-sky {
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(520px, 88vw);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.night-stars {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(var(--stars-x, 0px), var(--stars-y, 0px), 0);
+}
+
+.night-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #f7e6b3;
+  box-shadow: 0 0 9px 2px rgba(248, 221, 158, .43);
+  animation: night-twinkle 5s ease-in-out infinite;
+}
+.night-star--2 { width: 5px; height: 5px; box-shadow: 0 0 12px 3px rgba(248, 221, 158, .5); }
+
+.shooting-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: clamp(75px, 11vw, 120px);
+  height: 2px;
+  border-radius: 999px;
+  opacity: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 232, 176, .45) 55%, #fff9e5);
+  filter: drop-shadow(0 0 5px #fff2c2);
+  animation: shoot-across 1.3s linear both;
+}
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fffdf1;
+  box-shadow: 0 0 10px 4px rgba(255, 236, 184, .75);
+}
+.shooting-star--rtl { background: linear-gradient(to left, transparent, rgba(255, 232, 176, .45) 55%, #fff9e5); }
+.shooting-star--rtl::after { right: auto; left: 0; }
+
+@keyframes shoot-across {
+  0% { opacity: 0; transform: translate3d(var(--shoot-start-x), var(--shoot-start-y), 0) rotate(var(--shoot-angle)); }
+  12%, 78% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(var(--shoot-end-x), var(--shoot-end-y), 0) rotate(var(--shoot-angle)); }
+}
+
+.night-moon {
+  position: absolute;
+  top: 43px;
+  right: clamp(32px, 7vw, 125px);
+  width: clamp(64px, 7.5vw, 106px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 31%, #fff7d7, #f6dda4 66%, #dab977);
+  box-shadow: 0 0 34px 10px rgba(250, 222, 155, .2), 0 0 110px 32px rgba(250, 222, 155, .09);
+  transform: translate3d(var(--moon-x, 0px), var(--moon-y, 0px), 0);
+}
+.night-moon::before, .night-moon::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(184, 152, 94, .11);
+}
+.night-moon::before { width: 20%; height: 20%; top: 22%; left: 28%; }
+.night-moon::after { width: 12%; height: 12%; top: 57%; right: 24%; }
+
+.santa-flight {
+  position: absolute;
+  top: 205px;
+  right: clamp(8px, 5vw, 100px);
+  width: clamp(190px, 26vw, 290px);
+  height: auto;
+  opacity: .86;
+  filter: drop-shadow(0 7px 12px rgba(0, 0, 0, .18));
+  transform: translate3d(var(--santa-x, 0px), var(--santa-y, 0px), 0);
+  animation: santa-float 6s ease-in-out infinite;
+}
+
+@keyframes night-twinkle {
+  0%, 100% { opacity: .28; transform: scale(.75); }
+  50% { opacity: .92; transform: scale(1.15); }
+}
+
+@keyframes santa-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+@media (max-width: 600px) {
+  .night-sky { height: 380px; }
+  .night-moon { top: 53px; right: 8px; width: 54px; opacity: .75; }
+  .santa-flight { top: 182px; right: -8px; width: 155px; opacity: .75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-star, .santa-flight, .shooting-star { animation: none; }
+}

@@ -1,6 +1,7 @@
 /* Forest and tree visuals */
 .forest {
   position: relative;
+  translate: 0 var(--forest-parallax-y, 0px);
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -45,6 +46,31 @@
   animation-delay: 0s;
 }
 
+.tree-trimmings { pointer-events: none; }
+.tree-garland {
+  fill: none;
+  stroke: #e7cc86;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-dasharray: 3 2.5;
+  opacity: .9;
+}
+.tree-star {
+  fill: #ffe09a;
+  stroke: #fff5d3;
+  stroke-width: .6;
+  filter: drop-shadow(0 0 5px rgba(255, 220, 123, .85));
+}
+.tree-ornament { stroke: #fff1cc; stroke-width: .6; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .4)); }
+.tree-ornament--red { fill: #d94b54; }
+.tree-ornament--gold { fill: #f0bd59; }
+.tree-ornament--silver { fill: #d6e8e7; }
+.tree-ornament-glint { fill: rgba(255, 255, 255, .85); }
+.tree-bulb { animation: ornament-twinkle 3s ease-in-out infinite; }
+.tree-bulb--gold { fill: #ffe397; filter: drop-shadow(0 0 5px #ffd36d); }
+.tree-bulb--ice { fill: #a7ecff; filter: drop-shadow(0 0 5px #81dafa); }
+.tree-bulb--rose { fill: #ff9dac; filter: drop-shadow(0 0 5px #ff8198); }
+
 /* tree lights */
 .tree .lights {
   pointer-events: none;
@@ -75,6 +101,11 @@
   40% { opacity: 1; transform: scale(1.05); }
   60% { opacity: 0.7; transform: scale(0.95); }
   100% { opacity: 0.18; transform: scale(0.9); }
+}
+
+@keyframes ornament-twinkle {
+  0%, 100% { opacity: .58; }
+  50% { opacity: 1; }
 }
 
 @keyframes sway {
