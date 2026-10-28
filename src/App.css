@@ -24,6 +24,11 @@
 }
 
 .carols-app > :not(.snow):not(.night-sky) { position: relative; z-index: 1; }
+.opening-scene { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.carols-app.home-intro > .opening-scene { z-index: 5; pointer-events: none; transform-origin: top left; animation: scene-settle 1.6s cubic-bezier(.22, 1, .36, 1) both; }
+.carols-app.home-intro > .intro-backdrop { position: fixed; inset: 0; z-index: 4; pointer-events: none; background: radial-gradient(circle at 50% 45%, #1d4f39 0, #0b2b1f 46%, #061810 100%); animation: intro-backdrop-out 1.6s ease-in both; }
+.home-intro .content { pointer-events: none; }
+.intro-backdrop::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(#fff2c9 1px, transparent 1.5px); background-size: 45px 45px; opacity: .15; }
 .content { width: min(100%, 1040px); }
 
 .songs {
@@ -103,7 +108,7 @@
 .candy { display: none; }
 
 .carols-app.presentation-mode { position: fixed; inset: 0; z-index: 10; height: 100vh; height: 100dvh; overflow-y: auto; padding-top: 0; background: #092319; touch-action: pan-y; animation: presentation-open .35s ease-out both; }
-.presentation-mode > .hero, .presentation-mode > .forest, .presentation-mode > .night-sky, .presentation-mode > .contact-dev, .presentation-mode > .snow, .presentation-mode > .footer { display: none; }
+.presentation-mode > .opening-scene, .presentation-mode > .intro-backdrop, .presentation-mode > .contact-dev, .presentation-mode > .snow, .presentation-mode > .footer { display: none; }
 .presentation-mode .content { width: min(100%, 1300px); }
 .presentation-mode .post-controls { max-width: none; }
 .presentation-mode .controls { position: sticky; top: 0; z-index: 2; border-radius: 0 0 14px 14px; background: #123a2a; }
@@ -159,7 +164,16 @@
 .presentation-mode .lyrics.song-slide-next { animation: card-in-right .46s cubic-bezier(.22, 1, .36, 1) both; }
 .presentation-mode .lyrics.song-slide-prev { animation: card-in-left .46s cubic-bezier(.22, 1, .36, 1) both; }
 
-/* A brief opening sequence; the songbook remains interactive throughout. */
+/* The opening scene starts centered in the viewport, then settles into the page. */
+@keyframes scene-settle {
+  0%, 18% { transform: translate3d(var(--intro-x, 0px), var(--intro-y, 0px), 0) scale(var(--intro-scale, 1)); }
+  100% { transform: none; }
+}
+@keyframes intro-backdrop-out {
+  0%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .home-intro .hero::before { animation: home-glow 1s ease-out both; }
 .home-intro .hero .church,
 .home-intro .hero .churchCity { animation: home-rise .55s cubic-bezier(.22, 1, .36, 1) both; }
@@ -218,5 +232,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .carols-app.home-intro > .opening-scene { animation: none; }
+  .carols-app.home-intro > .intro-backdrop { display: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }

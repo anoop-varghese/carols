@@ -1,12 +1,27 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "./App";
 import songsData from "./data/songs";
 
 jest.mock("@microsoft/clarity", () => ({ init: jest.fn() }));
 
+const originalMatchMedia = window.matchMedia;
+
+function setReducedMotion(matches) {
+  window.matchMedia = jest.fn().mockImplementation((query) => ({
+    matches: query.includes("prefers-reduced-motion") && matches,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  }));
+}
+
 beforeEach(() => {
   window.history.replaceState({}, "", "/");
   window.localStorage.clear();
+  setReducedMotion(true);
+});
+
+afterEach(() => {
+  window.matchMedia = originalMatchMedia;
 });
 
 test("searches songs and opens the selected lyrics", () => {
@@ -54,6 +69,35 @@ test("opens a shared song directly in the lyrics view", () => {
   fireEvent.popState(window);
   expect(document.querySelector(".carols-app")).not.toHaveClass("presentation-mode");
   expect(screen.getByRole("searchbox", { name: "Search songs" })).toBeInTheDocument();
+});
+
+test("replays the opening on reload and returns to the top when it finishes", () => {
+  setReducedMotion(false);
+  jest.useFakeTimers();
+  const scrollTo = jest.spyOn(window, "scrollTo").mockImplementation(() => {});
+  const originalScrollY = Object.getOwnPropertyDescriptor(window, "scrollY");
+  Object.defineProperty(window, "scrollY", { configurable: true, value: 350 });
+  try {
+    const firstLoad = render(<App />);
+    expect(document.querySelector(".carols-app")).toHaveClass("home-intro");
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(document.querySelector("main")).toHaveAttribute("inert");
+    expect(document.querySelector("main")).toHaveAttribute("aria-hidden", "true");
+    firstLoad.unmount();
+
+    render(<App />);
+    expect(document.querySelector(".carols-app")).toHaveClass("home-intro");
+    expect(document.querySelector(".intro-backdrop")).toBeInTheDocument();
+
+    act(() => jest.advanceTimersByTime(1600));
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(document.querySelector(".carols-app")).not.toHaveClass("home-intro");
+    expect(document.querySelector("main")).not.toHaveAttribute("inert");
+  } finally {
+    if (originalScrollY) Object.defineProperty(window, "scrollY", originalScrollY);
+    scrollTo.mockRestore();
+    jest.useRealTimers();
+  }
 });
 
 test("swipes between songs without treating vertical scroll as navigation", () => {

@@ -10,7 +10,7 @@ import NightSky from "./components/NightSky";
 const sortedSongs = [...songsData].sort((a, b) => a.title.localeCompare(b.title));
 const lyricScales = [0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
 const FAVORITES_KEY = "carols-favourites";
-const HOME_INTRO_KEY = "carols-home-intro-played";
+const HOME_INTRO_DURATION_MS = 1600;
 
 function songSlug(title) {
   return title.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -59,11 +59,7 @@ function App() {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [homeIntro, setHomeIntro] = useState(() => {
     if (songIndexFromUrl() != null) return false;
-    try {
-      return window.sessionStorage.getItem(HOME_INTRO_KEY) !== "1";
-    } catch {
-      return true;
-    }
+    return !window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   });
   const [textSizeIndex, setTextSizeIndex] = useState(1);
   const [transitionTargetIndex, setTransitionTargetIndex] = useState(null);
@@ -71,22 +67,68 @@ function App() {
   const [fallbackDirection, setFallbackDirection] = useState(null);
   const [swipePreview, setSwipePreview] = useState(null);
   const appRef = useRef(null);
+  const sceneRef = useRef(null);
   const touchStart = useRef(null);
   const swipeTimer = useRef(null);
   const transitionId = useRef(0);
   const openedFrom = useRef(null);
   const returnToCard = useRef(null);
 
+  useLayoutEffect(() => {
+    if (!homeIntro || currentIndex != null) return;
+    const html = document.documentElement;
+    const body = document.body;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    function keepAtTop() {
+      if (window.scrollY !== 0) window.scrollTo(0, 0);
+    }
+
+    keepAtTop();
+    window.addEventListener("pageshow", keepAtTop);
+    window.addEventListener("scroll", keepAtTop, { passive: true });
+    return () => {
+      window.removeEventListener("pageshow", keepAtTop);
+      window.removeEventListener("scroll", keepAtTop);
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+    };
+  }, [homeIntro, currentIndex]);
+
   useEffect(() => {
     if (!homeIntro) return;
-    try {
-      window.sessionStorage.setItem(HOME_INTRO_KEY, "1");
-    } catch {
-      // The opening still plays when session storage is unavailable.
-    }
-    const timer = window.setTimeout(() => setHomeIntro(false), 1500);
+    const timer = window.setTimeout(() => {
+      setHomeIntro(false);
+      if (songIndexFromUrl() == null) window.scrollTo(0, 0);
+    }, HOME_INTRO_DURATION_MS);
     return () => window.clearTimeout(timer);
   }, [homeIntro]);
+
+  useLayoutEffect(() => {
+    if (!homeIntro || currentIndex != null) return;
+    const scene = sceneRef.current;
+    if (!scene) return;
+
+    function positionIntro() {
+      const width = scene.offsetWidth;
+      const height = scene.offsetHeight;
+      if (!width || !height) return;
+      const appRect = appRef.current.getBoundingClientRect();
+      const left = appRect.left + scene.offsetLeft;
+      const top = appRect.top + scene.offsetTop;
+      const scale = Math.min(1.22, window.innerWidth / width * 1.08);
+      scene.style.setProperty("--intro-scale", scale);
+      scene.style.setProperty("--intro-x", `${(window.innerWidth - width * scale) / 2 - left}px`);
+      scene.style.setProperty("--intro-y", `${(window.innerHeight - height * scale) / 2 - top}px`);
+    }
+
+    positionIntro();
+    window.addEventListener("resize", positionIntro);
+    return () => window.removeEventListener("resize", positionIntro);
+  }, [homeIntro, currentIndex]);
 
   useLayoutEffect(() => {
     if (currentIndex != null) {
@@ -318,10 +360,13 @@ function App() {
       onTouchEnd={handleTouchEnd}
       onTouchCancel={handleTouchCancel}
     >
-      <NightSky active={currentIndex == null} />
-      <Header />
-      <Forest />
-      <main className="content">
+      {homeIntro && currentIndex == null && <div className="intro-backdrop" aria-hidden="true" />}
+      <div className="opening-scene" ref={sceneRef}>
+        <NightSky active={currentIndex == null} />
+        <Header />
+        <Forest />
+      </div>
+      <main className="content" inert={homeIntro && currentIndex == null} aria-hidden={homeIntro && currentIndex == null}>
         {currentIndex == null && (
           <section className="songs">
             <div className="section-heading">
