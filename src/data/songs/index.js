@@ -1,53 +1,56 @@
-// imports each song module and exports parsed array
-import song1 from './VANNUDICCHALLO-EE-RAVIL.js';
-import song2 from './PAADI-PAADI-PAADI-POYEEDAAM.js';
-import song3 from './Mariyaame-naarigalil.js';
-import song4 from './Rajadhi-Rajan.js';
-import song5 from './Seeyon-Manavalan.js';
-import song6 from './Tharagam-pon-tharagam-pon.js';
-import song7 from './Rajanayi-bhuviyil-Jadhanayi.js';
-import song8 from './Ha-Jayageetham-naam-paadidam.js';
-import song9 from './Innidha-Vinsudhan-Jadhanayi.js';
-import song10 from './Sam-Sam-Sam.js';
-import song11 from './Sundhara-sudhinam.js';
-import song12 from './Aanandhame-Daiva.js';
-import song13 from './Bethehem-puriyilae-vannu.js';
-import song14 from './Prabha-Thooki.js';
-import song15 from './Poyidam.js';
-import song16 from './Ponnallle-Poovalle.js';
-import song17 from './Anaswara-Sneha-Swaroopanayi.js';
-import song18 from './Daivam-pirakkunnu.js';
-import song19 from './Dhanumaasa-Kulirinte.js';
+import vannudicchallo from './VANNUDICCHALLO-EE-RAVIL.js';
+import paadiPaadi from './PAADI-PAADI-PAADI-POYEEDAAM.js';
+import mariyaame from './Mariyaame-naarigalil.js';
+import rajadhiRajan from './Rajadhi-Rajan.js';
+import seeyonManavalan from './Seeyon-Manavalan.js';
+import tharagam from './Tharagam-pon-tharagam-pon.js';
+import rajanayi from './Rajanayi-bhuviyil-Jadhanayi.js';
+import haJayageetham from './Ha-Jayageetham-naam-paadidam.js';
+import innidha from './Innidha-Vinsudhan-Jadhanayi.js';
+import samSamSam from './Sam-Sam-Sam.js';
+import sundhara from './Sundhara-sudhinam.js';
+import aanandhame from './Aanandhame-Daiva.js';
+import bethehem from './Bethehem-puriyilae-vannu.js';
+import prabhaThooki from './Prabha-Thooki.js';
+import poyidam from './Poyidam.js';
+import ponnallle from './Ponnallle-Poovalle.js';
+import anaswara from './Anaswara-Sneha-Swaroopanayi.js';
+import daivamPirakkunnu from './Daivam-pirakkunnu.js';
+import dhanumaasa from './Dhanumaasa-Kulirinte.js';
+import Parithilinnoru from './Parithilinnoru-rajakumaranayi.js';
 
-const modules = [
-  song1,
-  song2,
-  song3,
-  song4,
-  song5,
-  song6,
-  song7,
-  song8,
-  song9,
-  song10,
-  song11,
-  song12,
-  song13,
-  song14,
-  song15,
-  song16,
-  song17,
-  song18,
-  song19,
+// Set active to false to keep a song in the catalog without showing it in the app.
+// For a new song, add its file above and an entry here. Changes take effect on deployment.
+export const songCatalog = [
+  { content: vannudicchallo, active: true },
+  { content: paadiPaadi, active: true },
+  { content: mariyaame, active: true },
+  { content: rajadhiRajan, active: true },
+  { content: seeyonManavalan, active: true },
+  { content: tharagam, active: true },
+  { content: rajanayi, active: true },
+  { content: haJayageetham, active: true },
+  { content: innidha, active: true },
+  { content: samSamSam, active: true },
+  { content: sundhara, active: true },
+  { content: aanandhame, active: true },
+  { content: bethehem, active: true },
+  { content: prabhaThooki, active: true },
+  { content: poyidam, active: true },
+  { content: ponnallle, active: true },
+  { content: anaswara, active: true },
+  { content: daivamPirakkunnu, active: true },
+  { content: dhanumaasa, active: true },
+  { content: Parithilinnoru, active: true },
 ];
 
-const songsData = modules.map((content) => {
-  const str = String(content || '');
-  const idx = str.indexOf('$');
-  if (idx === -1) return { title: str.trim(), lyrics: '' };
-  const title = str.slice(0, idx).trim();
-  const lyrics = str.slice(idx + 1).trim();
-  return { title, lyrics };
-});
+export function activeSongs(catalog) {
+  return catalog.filter(({ active }) => active).map(({ content }) => {
+    const str = String(content || '');
+    const idx = str.indexOf('$');
+    if (idx === -1) throw new Error(`Song is missing the title/lyrics separator ($): ${str.slice(0, 60)}`);
+    return { title: str.slice(0, idx).trim(), lyrics: str.slice(idx + 1).trim() };
+  });
+}
 
-export default songsData;
+export default activeSongs(songCatalog);

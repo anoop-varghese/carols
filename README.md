@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# Carols songbook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a static React app. Song lyrics live in individual files under `src/data/songs/`; `src/data/songs/index.js` is the catalog that controls which songs appear. A database is unnecessary while songs are maintained through this repository and published with the site.
 
-## Available Scripts
+## Add or activate songs
 
-In the project directory, you can run:
+1. Add a new `.js` file in `src/data/songs/`, following an existing song file. Put the title before `$` and the lyrics after it.
+2. Import that file in `src/data/songs/index.js` and add it to `songCatalog` with `active: true`.
+3. To hide a song while retaining its lyrics, change its catalog entry to `active: false`. Set it back to `true` when you want to use it again.
+4. Build and deploy the site for changes to appear to visitors.
 
-### `npm start`
+Only active songs appear in the songbook, search, favourites, next/previous navigation, and shared song links. A link to an inactive song opens the songbook instead. Visitors cannot change active status themselves.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Treat repository write access as admin access: only people allowed to edit and deploy this code can change song status. There is no public admin page or browser setting for it.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If songs need to be edited or activated without changing code and redeploying, a content management system or backend would be the next step.
 
-### `npm test`
+## Development
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Run `npm start` for local development, `npm test -- --watch=false` for tests, and `npm run build` for a production build.
