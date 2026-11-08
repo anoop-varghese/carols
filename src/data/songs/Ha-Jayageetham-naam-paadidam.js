@@ -1,4 +1,4 @@
-const song = `Ha Jayageetham naam paadidam $ Ha Jayageetham naam paadidam, Sarveshan piraanai bhuloge…(2) 
+const song = `Ha Jayageetham naam paadidam, Sarveshan piraanai bhuloge…(2) 
 Dudhar vannil ninnum, Modiya varthal modham 
 Kethanandajapaaril Sandhosham..(2) Ha Jayageetham .. 
 

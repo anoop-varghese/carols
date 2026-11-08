@@ -1,4 +1,4 @@
-const song = `Ponnallle poovalle $ Ponnalle Poovalle Poonkathiralle 
+const song = `Ponnalle Poovalle Poonkathiralle 
 Manninte Punyamalle…. (2) 
 Sankeerthanangalaal, Saubhagya Geethiyaal 
 Mannil Vanna Bhagyamalle ….(2) - (ponnalle poovalle….)

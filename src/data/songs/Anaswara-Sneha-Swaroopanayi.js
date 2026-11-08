@@ -1,4 +1,4 @@
-const song = `Anaswara Sneha Swaroopanayi $ Anaswara Sneha Swaroopanayi 
+const song = `Anaswara Sneha Swaroopanayi 
 Anupama Deepthi Chorinjiduvan 
 Aadiyum Andhavum Ariyunnavan 
 Aagathanaayitha Bethlahemil (2) 

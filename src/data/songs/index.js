@@ -3,6 +3,7 @@ import paadiPaadi from './PAADI-PAADI-PAADI-POYEEDAAM.js';
 import mariyaame from './Mariyaame-naarigalil.js';
 import rajadhiRajan from './Rajadhi-Rajan.js';
 import seeyonManavalan from './Seeyon-Manavalan.js';
+import seeyonManavalanMalayalam from './Seeyon-Manavalan-Malayalam.js';
 import tharagam from './Tharagam-pon-tharagam-pon.js';
 import rajanayi from './Rajanayi-bhuviyil-Jadhanayi.js';
 import haJayageetham from './Ha-Jayageetham-naam-paadidam.js';
@@ -18,39 +19,41 @@ import anaswara from './Anaswara-Sneha-Swaroopanayi.js';
 import daivamPirakkunnu from './Daivam-pirakkunnu.js';
 import dhanumaasa from './Dhanumaasa-Kulirinte.js';
 import Parithilinnoru from './Parithilinnoru-rajakumaranayi.js';
+import VaruAarunodayame from './Varu-arunodayame.js';
+import VaruAarunodayameMalayalam from './Varu-arunodayame-Malayalam.js';
 
 // Set active to false to keep a song in the catalog without showing it in the app.
 // For a new song, add its file above and an entry here. Changes take effect on deployment.
 export const songCatalog = [
-  { content: vannudicchallo, active: true },
-  { content: paadiPaadi, active: true },
-  { content: mariyaame, active: true },
-  { content: rajadhiRajan, active: true },
-  { content: seeyonManavalan, active: true },
-  { content: tharagam, active: true },
-  { content: rajanayi, active: true },
-  { content: haJayageetham, active: true },
-  { content: innidha, active: true },
-  { content: samSamSam, active: true },
-  { content: sundhara, active: true },
-  { content: aanandhame, active: true },
-  { content: bethehem, active: true },
-  { content: prabhaThooki, active: true },
-  { content: poyidam, active: true },
-  { content: ponnallle, active: true },
-  { content: anaswara, active: true },
-  { content: daivamPirakkunnu, active: true },
-  { content: dhanumaasa, active: true },
-  { content: Parithilinnoru, active: true },
+  { title: 'VANNUDICCHALLO EE RAVIL', content: vannudicchallo, active: true },
+  { title: 'PAADI PAADI PAADI POYEEDAAM', content: paadiPaadi, active: true },
+  { title: 'Mariyaame naarigalil', content: mariyaame, active: true },
+  { title: 'Rajadhi Rajan', content: rajadhiRajan, active: true },
+  { title: 'Seeyon Manavalan', content: seeyonManavalan, active: true, otherLangContent: seeyonManavalanMalayalam },
+  { title: 'Tharagam pon tharagam pon', content: tharagam, active: true },
+  { title: 'Rajanayi bhuviyil Jadhanayi', content: rajanayi, active: true },
+  { title: 'Ha Jayageetham naam paadidam', content: haJayageetham, active: true },
+  { title: 'Innidha Vinsudhan Jadhanayi', content: innidha, active: true },
+  { title: 'Sam Sam Sam', content: samSamSam, active: true },
+  { title: 'Sundhara sudhinam', content: sundhara, active: true },
+  { title: 'Aanandhame! Daiva', content: aanandhame, active: true },
+  { title: 'Bethehem puriyilae vannu', content: bethehem, active: true },
+  { title: 'Prabha Thooki', content: prabhaThooki, active: false },
+  { title: 'Poyidam', content: poyidam, active: false },
+  { title: 'Ponnallle poovalle', content: ponnallle, active: false },
+  { title: 'Anaswara Sneha Swaroopanayi', content: anaswara, active: true },
+  { title: 'Daivam pirakkunnu', content: daivamPirakkunnu, active: true },
+  { title: 'Dhanumaasa Kulirinte', content: dhanumaasa, active: true },
+  { title: 'Parithilinnoru rajakumaranayi', content: Parithilinnoru, active: true },
+  { title: 'Varu arunodayame', content: VaruAarunodayame, active: true, otherLangContent: VaruAarunodayameMalayalam },
 ];
 
 export function activeSongs(catalog) {
-  return catalog.filter(({ active }) => active).map(({ content }) => {
-    const str = String(content || '');
-    const idx = str.indexOf('$');
-    if (idx === -1) throw new Error(`Song is missing the title/lyrics separator ($): ${str.slice(0, 60)}`);
-    return { title: str.slice(0, idx).trim(), lyrics: str.slice(idx + 1).trim() };
-  });
+  return catalog.filter(({ active }) => active).map(({ title, content, otherLangContent = '' }) => ({
+    title,
+    lyrics: String(content || '').trim(),
+    otherLangContent: String(otherLangContent || '').trim(),
+  }));
 }
 
 export default activeSongs(songCatalog);

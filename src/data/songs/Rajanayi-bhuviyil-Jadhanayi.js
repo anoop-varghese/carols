@@ -1,4 +1,4 @@
-const song = `Rajanayi bhuviyil Jadhanayi $ Rajanayi bhuviyil Jadhanayi, Bethelem Thannilai Inniravil 
+const song = `Rajanayi bhuviyil Jadhanayi, Bethelem Thannilai Inniravil 
 Padidam koodidam 
 Rajane kanuvan … (2) 
 Rajanayi …..inniravil 

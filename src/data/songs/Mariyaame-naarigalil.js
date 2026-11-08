@@ -1,4 +1,4 @@
-const song = `Mariyaame naarigalil $ Mariyaame naarigalil nee bhagyavathi 
+const song = `Mariyaame naarigalil nee bhagyavathi 
 Jagadheeshan nin udhare Rupam 
 pundathinaal Eri thee thann naduvingal 
 Eriyaathe oru thari pol 

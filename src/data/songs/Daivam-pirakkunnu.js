@@ -1,4 +1,4 @@
-const song = `Daivam pirakkunnu $ Daivam pirakkunnu 
+const song = `Daivam pirakkunnu 
 Manushyanaay bethlahemil 
 Manju peyyunna malarmadakkil 
 Halleluya Halleluya.. 

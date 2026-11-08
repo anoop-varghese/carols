@@ -2,11 +2,11 @@ import songsData, { activeSongs, songCatalog } from './index';
 
 test('only active songs are available to the app', () => {
   const catalog = [
-    { content: 'Visible song $ First line', active: true },
-    { content: 'Hidden song $ Secret line', active: false },
+    { title: 'Visible song', content: 'First line', active: true },
+    { title: 'Hidden song', content: 'Secret line', active: false },
   ];
 
-  expect(activeSongs(catalog)).toEqual([{ title: 'Visible song', lyrics: 'First line' }]);
+  expect(activeSongs(catalog)).toEqual([{ title: 'Visible song', lyrics: 'First line', otherLangContent: '' }]);
   expect(songsData).toEqual(activeSongs(songCatalog));
 });
 
@@ -17,7 +17,7 @@ test('shows only the title of Parithilinnoru in the songbook', () => {
   expect(song.lyrics).toMatch(/^Parithilinnoru rajakumaranayi vannu pirannoru sundarane\./);
 });
 
-test('rejects a song without a title/lyrics separator', () => {
-  expect(() => activeSongs([{ content: 'Title\nLyrics', active: true }]))
-    .toThrow('Song is missing the title/lyrics separator ($)');
+test('includes the paired language song name when provided', () => {
+  expect(activeSongs([{ title: 'Song', content: 'Lyrics', active: true, otherLangContent: 'Alternate lyrics' }]))
+    .toEqual([{ title: 'Song', lyrics: 'Lyrics', otherLangContent: 'Alternate lyrics' }]);
 });

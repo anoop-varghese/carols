@@ -1,4 +1,4 @@
-const song = `Bethehem puriyilae vannu $ Bethlehem puriyilaay vannu pirannu unniyeshu
+const song = `Bethlehem puriyilaay vannu pirannu unniyeshu
 Lokapaapam neekkuvaanayi parithil manushyanay
 Vannallo ee raavil naadhan mariyathin makanayi mannil
 

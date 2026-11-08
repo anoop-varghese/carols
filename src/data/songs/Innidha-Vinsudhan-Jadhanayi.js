@@ -1,4 +1,4 @@
-const song = `Innidha Vinsudhan Jadhanayi $ Innidha Vinsudhan Jadhanayi , Kanni meri than kanmani ayi..(2) 
+const song = `Innidha Vinsudhan Jadhanayi , Kanni meri than kanmani ayi..(2) 
 Unnatha vidhiyil adhi mahathwam, Manniril manavar kathi 
 santhosham(2) Pathira pakshigal padidumbol, paripavana 
 Roohanurangi(2) 

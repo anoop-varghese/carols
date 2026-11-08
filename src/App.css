@@ -91,7 +91,13 @@
 .lyrics-content { position: relative; max-width: 620px; margin: auto; }
 .lyrics .eyebrow { color: #8b6930; }
 .lyrics-title { margin: 0 0 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid #dfdfcf; font-family: "Cinzel", Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.25; }
+.language-toggle { position: absolute; top: 3rem; right: 0; display: grid; width: 2.75rem; height: 2.75rem; place-items: center; padding: .2rem; border: 1px solid #8b6930; border-radius: 50%; background: transparent; color: #47634d; cursor: pointer; }
+.language-icon-text { display: flex; align-items: center; gap: 1px; font: 700 .82rem/1 "Montserrat", sans-serif; white-space: nowrap; }
+.language-icon-slash { font-size: .62rem; }
+.language-toggle:hover, .language-toggle:focus-visible { background: #eae8d9; }
+.language-toggle:focus-visible { outline: 2px solid #8b6930; outline-offset: 2px; }
 .lyrics .lyrics-title { padding-right: 3rem; }
+.lyrics .lyrics-title.has-language-toggle { margin-top: 3rem; }
 .lyrics-favorite { position: absolute; top: 0; right: 0; }
 .lyrics-body { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: #253b2e; font: 500 var(--lyrics-font-size, 1.125rem)/1.9 "Montserrat", sans-serif; }
 

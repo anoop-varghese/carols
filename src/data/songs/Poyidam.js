@@ -1,4 +1,4 @@
-const song = `Poyidam $ Poyidam poyidam, 
+const song = `Poyidam poyidam, 
 Bethlehemile pulkootil, 
 Lokathin rekshakane kandu vanangidam. 
 Paapangal pokidaan paaridathil vannavane, 

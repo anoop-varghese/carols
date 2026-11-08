@@ -1,4 +1,4 @@
-const song = `Prabha Thooki $ La la la... la la la la... la la la... la la la... (×13) 
+const song = `La la la... la la la la... la la la... la la la... (×13) 
 
 Prabha thooki nava thaaram mannil santhoshame, 
 Puthu manam naru manam choriyumee velayil. 

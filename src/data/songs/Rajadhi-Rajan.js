@@ -1,4 +1,4 @@
-const song = `Rajadhi Rajan $ Rajadhi Rajan Piranallo, 
+const song = `Rajadhi Rajan Piranallo, 
 Bethelehemile Pulkootil(2) Raajadhi Rajan…
 
 Piranallo Davidususdan, 

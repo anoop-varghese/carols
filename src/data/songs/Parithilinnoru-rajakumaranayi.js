@@ -1,4 +1,4 @@
-const song = `Parithilinnoru rajakumaranayi $ Parithilinnoru rajakumaranayi vannu pirannoru sundarane.
+const song = `Parithilinnoru rajakumaranayi vannu pirannoru sundarane.
 Bhoomiyil ninnu manavarayi inbmayi paadunnu nin jananam (2).
 
 ​Aadipadaam thappukottam aagoshikkam innoru thaaraminnu vinnil vannallo, sneha thaaraminnu vinnil vannallo (2).

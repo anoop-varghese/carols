@@ -4,8 +4,8 @@ This is a static React app. Song lyrics live in individual files under `src/data
 
 ## Add or activate songs
 
-1. Add a new `.js` file in `src/data/songs/`, following an existing song file. Put the title before `$` and the lyrics after it.
-2. Import that file in `src/data/songs/index.js` and add it to `songCatalog` with `active: true`.
+1. Add a new `.js` file in `src/data/songs/`, following an existing song file. Put only the lyrics in the file.
+2. Import that file in `src/data/songs/index.js` and add it to `songCatalog` with `title`, `content`, and `active`. When alternate-language lyrics are available, also set `otherLangContent` to the imported lyrics; otherwise omit it.
 3. To hide a song while retaining its lyrics, change its catalog entry to `active: false`. Set it back to `true` when you want to use it again.
 4. Build and deploy the site for changes to appear to visitors.
 

@@ -1,4 +1,4 @@
-const song = `Tharagam pon tharagam pon $ Tharagam pon tharagam pon tharagam minni 
+const song = `Tharagam pon tharagam pon tharagam minni 
 Bethlehemil rajakumaran kannugal chinni(2) 
 
 Aatidayanmar malamerukalil aadhi shenidharay urangi 

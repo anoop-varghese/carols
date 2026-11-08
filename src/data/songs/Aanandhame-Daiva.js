@@ -1,4 +1,4 @@
-const song = `Aanandhame! Daiva $ Aanandhame! Daiva soonuvin jananam, Akhilarkum aanandame..(2) 
+const song = `Aanandhame! Daiva soonuvin jananam, Akhilarkum aanandame..(2) 
 Mashiha marthya roopamettudan, Mashihayude bethelem puri..(2) 
 Aanandhame!..(1)
 

@@ -1,4 +1,4 @@
-const song = `Dhanumaasa Kulirinte $ Dhanumaasa kulirinte eeranam nishaile
+const song = `Dhanumaasa kulirinte eeranam nishaile
 Jaathanaai jaathanaai...
 Innu Bethlehem pulkootilaai
 Davidin makanaai Mariyathin puthranai

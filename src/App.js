@@ -8,8 +8,9 @@ import Forest from "./components/Forest";
 import NightSky from "./components/NightSky";
 
 const sortedSongs = [...songsData].sort((a, b) => a.title.localeCompare(b.title));
-const lyricScales = [0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
+const lyricScales = [0.8, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
 const FAVORITES_KEY = "carols-favourites";
+const LANGUAGE_PREFERENCES_KEY = "carols-language-preferences";
 const HOME_INTRO_DURATION_MS = 1600;
 
 function songSlug(title) {
@@ -30,6 +31,20 @@ function savedFavorites() {
   } catch {
     return [];
   }
+}
+
+function savedLanguagePreferences() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(LANGUAGE_PREFERENCES_KEY) || "{}");
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch {
+    return {};
+  }
+}
+
+function alternateSongFor(song) {
+  if (!song?.otherLangContent) return null;
+  return { title: song.title, lyrics: song.otherLangContent };
 }
 
 function FavoriteButton({ song, active, onToggle, className = "" }) {
@@ -56,6 +71,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(songIndexFromUrl);
   const [search, setSearch] = useState("");
   const [favorites, setFavorites] = useState(savedFavorites);
+  const [languagePreferences, setLanguagePreferences] = useState(savedLanguagePreferences);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [homeIntro, setHomeIntro] = useState(() => {
     if (songIndexFromUrl() != null) return false;
@@ -172,6 +188,14 @@ function App() {
     }
   }, [favorites]);
 
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(LANGUAGE_PREFERENCES_KEY, JSON.stringify(languagePreferences));
+    } catch {
+      // Language selection still works for this page when storage is unavailable.
+    }
+  }, [languagePreferences]);
+
   const matchingSongs = sortedSongs
     .map((song, index) => ({ song, index }))
     .filter(({ song }) =>
@@ -185,6 +209,11 @@ function App() {
       ? current.filter((favorite) => favorite !== slug)
       : [...current, slug]
     );
+  }
+
+  function toggleLanguage(song) {
+    const slug = songSlug(song.title);
+    setLanguagePreferences((current) => ({ ...current, [slug]: !current[slug] }));
   }
 
   function openSong(index) {
@@ -524,19 +553,43 @@ function App() {
 
           <div key={currentIndex} className={`lyrics${fallbackDirection ? ` song-slide-${fallbackDirection}` : ""}`} style={{ "--lyrics-font-size": `${1.125 * lyricScales[textSizeIndex] * 1.25}rem`, viewTransitionName: "song-card" }}>
               <div className="lyrics-content">
+                {(() => {
+                  const baseSong = sortedSongs[currentIndex];
+                  const alternateSong = alternateSongFor(baseSong);
+                  const showingAlternate = Boolean(alternateSong && languagePreferences[songSlug(baseSong.title)]);
+                  const displayedSong = showingAlternate ? alternateSong : baseSong;
+                  return <>
                 <FavoriteButton
-                  song={sortedSongs[currentIndex]}
-                  active={favorites.includes(songSlug(sortedSongs[currentIndex].title))}
+                  song={baseSong}
+                  active={favorites.includes(songSlug(baseSong.title))}
                   onToggle={toggleFavorite}
                   className="lyrics-favorite"
                 />
                 <p className="eyebrow">Carol {String(currentIndex + 1).padStart(2, "0")} of {sortedSongs.length}</p>
-                <h1 className="lyrics-title">
-                  {(sortedSongs[currentIndex] || { title: "" }).title}
+                <h1
+                  className={`lyrics-title${alternateSong ? " has-language-toggle" : ""}`}
+                  style={{ fontSize: `clamp(${2 * lyricScales[textSizeIndex]}rem, ${4 * lyricScales[textSizeIndex]}vw, ${3.25 * lyricScales[textSizeIndex]}rem)` }}
+                >
+                  {displayedSong.title}
                 </h1>
-                <pre className="lyrics-body">
-                  {(sortedSongs[currentIndex] || { lyrics: "" }).lyrics}
-                </pre>
+                {alternateSong && (
+                  <button
+                    className="language-toggle"
+                    type="button"
+                    aria-label={showingAlternate ? `Switch to ${baseSong.title} lyrics` : `Switch to alternate ${baseSong.title} lyrics`}
+                    title={showingAlternate ? `Switch to ${baseSong.title} lyrics` : `Switch to alternate ${baseSong.title} lyrics`}
+                    onClick={() => toggleLanguage(baseSong)}
+                  >
+                    <span className="language-icon-text" aria-hidden="true">
+                      <span>{showingAlternate ? "അ" : "A"}</span>
+                      <span className="language-icon-slash">/</span>
+                      <span>{showingAlternate ? "A" : "അ"}</span>
+                    </span>
+                  </button>
+                )}
+                <pre className="lyrics-body">{displayedSong.lyrics}</pre>
+                  </>;
+                })()}
               </div>
           </div>
         </section>}
@@ -555,7 +608,12 @@ function App() {
         >
           <div className="lyrics-content">
             <p className="eyebrow">Carol {String(swipePreview.targetIndex + 1).padStart(2, "0")} of {sortedSongs.length}</p>
-            <h3 className="lyrics-title">{sortedSongs[swipePreview.targetIndex].title}</h3>
+            <h3
+              className="lyrics-title"
+              style={{ fontSize: `clamp(${2 * lyricScales[textSizeIndex]}rem, ${4 * lyricScales[textSizeIndex]}vw, ${3.25 * lyricScales[textSizeIndex]}rem)` }}
+            >
+              {sortedSongs[swipePreview.targetIndex].title}
+            </h3>
             <pre className="lyrics-body">{sortedSongs[swipePreview.targetIndex].lyrics}</pre>
           </div>
         </div>
