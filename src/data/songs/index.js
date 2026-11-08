@@ -19,6 +19,7 @@ import anaswara from './Anaswara-Sneha-Swaroopanayi.js';
 import daivamPirakkunnu from './Daivam-pirakkunnu.js';
 import dhanumaasa from './Dhanumaasa-Kulirinte.js';
 import Parithilinnoru from './Parithilinnoru-rajakumaranayi.js';
+import ParithilinnoruMalayalam from './Parithilinnoru-rajakumaranayi-Malayalam.js';
 import VaruAarunodayame from './Varu-arunodayame.js';
 import VaruAarunodayameMalayalam from './Varu-arunodayame-Malayalam.js';
 
@@ -44,7 +45,7 @@ export const songCatalog = [
   { title: 'Anaswara Sneha Swaroopanayi', content: anaswara, active: true },
   { title: 'Daivam pirakkunnu', content: daivamPirakkunnu, active: true },
   { title: 'Dhanumaasa Kulirinte', content: dhanumaasa, active: true },
-  { title: 'Parithilinnoru rajakumaranayi', content: Parithilinnoru, active: true },
+  { title: 'Parithilinnoru rajakumaranayi', content: Parithilinnoru, active: true, otherLangContent: ParithilinnoruMalayalam },
   { title: 'Varu arunodayame', content: VaruAarunodayame, active: true, otherLangContent: VaruAarunodayameMalayalam },
 ];
 
