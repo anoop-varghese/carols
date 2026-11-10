@@ -198,10 +198,12 @@ function App() {
 
   const matchingSongs = sortedSongs
     .map((song, index) => ({ song, index }))
-    .filter(({ song }) =>
-      song.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()) &&
-      (!showFavoritesOnly || favorites.includes(songSlug(song.title)))
-    );
+    .filter(({ song }) => {
+      const query = search.trim().toLocaleLowerCase();
+      const matchesSearch = !query || [song.title, song.lyrics, song.otherLangContent]
+        .some((text) => text.toLocaleLowerCase().includes(query));
+      return matchesSearch && (!showFavoritesOnly || favorites.includes(songSlug(song.title)));
+    });
 
   function toggleFavorite(title) {
     const slug = songSlug(title);
@@ -412,7 +414,7 @@ function App() {
                 <span className="sr-only">Search songs</span>
                 <input
                   type="search"
-                  placeholder="Search for a song..."
+                  placeholder="Search song titles or lyrics..."
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                 />

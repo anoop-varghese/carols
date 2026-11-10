@@ -2,6 +2,8 @@
 
 This is a static React app. Song lyrics live in individual files under `src/data/songs/`; `src/data/songs/index.js` is the catalog that controls which songs appear. A database is unnecessary while songs are maintained through this repository and published with the site.
 
+The app caches its shell and same-origin assets for offline use. Visitors need to open the site online once so the service worker can install and cache the app; after that, the songbook can open without a connection. Service workers require HTTPS (or localhost during development).
+
 ## Add or activate songs
 
 1. Add a new `.js` file in `src/data/songs/`, following an existing song file. Put only the lyrics in the file.
