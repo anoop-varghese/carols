@@ -123,6 +123,83 @@
 .presentation-mode .lyrics-title { font-size: clamp(2rem, 4vw, 3.25rem); }
 .carols-app.native-transition-session.presentation-mode, .native-transition-session.presentation-mode .lyrics { animation: none; }
 
+.print-songbook { display: none; }
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 0 12mm;
+
+    @bottom-center {
+      color: #8b2835;
+      font: 9pt Georgia, serif;
+      content: counter(page);
+    }
+  }
+
+  @page:first {
+    @bottom-center { content: none; }
+  }
+
+  html, body, #root {
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .carols-app {
+    display: block;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible;
+    background: #fff !important;
+    color: #213b2d !important;
+  }
+
+  .carols-app > :not(.print-songbook) { display: none !important; }
+  .print-songbook { display: block; color: #213b2d; font-family: Georgia, "Times New Roman", serif; }
+
+  .print-cover {
+    position: relative;
+    width: 210mm;
+    height: 285mm;
+    margin: 0;
+    overflow: visible;
+    break-after: page;
+    background: #fff;
+    color: #111;
+    text-align: center;
+  }
+
+  .print-cover-art { position: absolute; top: 0; left: 0; z-index: 0; width: 210mm; height: 297mm; object-fit: fill; }
+  .print-cover-copy { position: relative; z-index: 1; padding: 80mm 12mm 0; }
+  .print-cover-church { margin: 0 0 10mm; color: #111; font: 700 10pt Montserrat, Arial, sans-serif; letter-spacing: .18em; }
+  .print-cover-kicker { margin: 0 0 3mm; font-size: 17pt; font-weight: 700; letter-spacing: .16em; }
+  .print-cover h1 { margin: 0; color: #111; font-size: 42pt; letter-spacing: .08em; line-height: 1.15; }
+  .print-cover-title { margin: 4mm 0 0; color: #111; font-size: 22pt; letter-spacing: .12em; }
+  .print-cover-subtitle { margin: 12mm 0 0; font-size: 15pt; font-style: italic; }
+  .print-cover-count { margin-top: 5mm; color: #111; font: 10pt Montserrat, Arial, sans-serif; }
+
+  .print-index { height: 285mm; padding: 16mm 18mm; break-after: page; }
+  .print-eyebrow { margin: 0 0 3mm; color: #8b2835; font: 700 9pt Montserrat, Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+  .print-index h1 { margin: 0; padding-bottom: 3mm; border-bottom: 1.2pt solid #a77b3f; color: #174b38; font-size: 28pt; }
+  .print-index-intro { margin: 3mm 0 7mm; color: #8b2835; font-size: 11pt; font-style: italic; }
+  .print-index ol { margin: 0; padding: 0; list-style: none; }
+  .print-index li { display: flex; align-items: baseline; gap: 5mm; min-height: 10mm; padding: 2mm 0; border-bottom: .5pt dotted #d7c8a7; font-size: 11pt; }
+  .print-index-number { min-width: 8mm; color: #8b2835; font: 700 9pt Montserrat, Arial, sans-serif; }
+
+  .print-song { padding: 4mm 18mm; break-before: auto; break-inside: auto; page-break-inside: auto; }
+  .print-song .print-eyebrow { margin-bottom: 2mm; padding-top: 2mm; border-top: 1.5pt solid #174b38; break-after: avoid-page; page-break-after: avoid; }
+  .print-song h1 { margin: 0 0 4mm; color: #174b38; font-size: 20pt; line-height: 1.2; break-inside: avoid; break-after: avoid-page; page-break-after: avoid; }
+  .print-song pre { margin: 0; color: #26352f; font: 10pt/1.38 Georgia, "Times New Roman", serif; white-space: pre-wrap; overflow-wrap: anywhere; break-inside: auto; page-break-inside: auto; orphans: 3; widows: 3; }
+  .print-song h2 { margin: 5mm 0 3mm; padding-bottom: 2mm; border-bottom: .75pt solid #a77b3f; color: #8b2835; font: 700 12pt "Noto Sans Malayalam", Georgia, serif; }
+}
+
 .swipe-preview { position: fixed !important; z-index: 3 !important; bottom: 0; overflow: hidden; pointer-events: none; padding: clamp(1.5rem, 5vw, 3.5rem); border: 1px solid rgba(241, 203, 121, .25); border-radius: 22px 22px 0 0; background: #fcf9f1; color: #213b2d; box-shadow: -18px 0 40px rgba(0, 0, 0, .28); will-change: transform; }
 .swipe-preview .lyrics-content { max-width: 900px; }
 .swipe-preview .eyebrow { color: #8b6930; }

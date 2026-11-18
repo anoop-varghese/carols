@@ -6,7 +6,10 @@ import songsData from "./data/songs/index.js";
 import Header from "./components/Header";
 import Forest from "./components/Forest";
 import NightSky from "./components/NightSky";
+import christmasPrintCover from "./assets/christmas-cover-print.png";
 
+// The screen list and printable songbook share this sorted, active catalog so
+// additions, removals, title edits, and lyric edits stay in sync automatically.
 const sortedSongs = [...songsData].sort((a, b) => a.title.localeCompare(b.title));
 const lyricScales = [0.8, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
 const FAVORITES_KEY = "carols-favourites";
@@ -596,6 +599,44 @@ function App() {
           </div>
         </section>}
       </main>
+      {/* Keep print contents and lyrics data-driven from the same catalog as the app. */}
+      <div className="print-songbook" aria-hidden="true">
+        <section className="print-cover">
+          <img className="print-cover-art" src={christmasPrintCover} alt="" />
+          <div className="print-cover-copy">
+            <p className="print-cover-church">✦ &nbsp; ST MARYS OSC &nbsp; ✦</p>
+            <p className="print-cover-kicker">A VERY MERRY</p>
+            <h1>CHRISTMAS</h1>
+            <p className="print-cover-title">✧ &nbsp; SONGBOOK &nbsp; ✧</p>
+            <p className="print-cover-subtitle">Sing the joy of Christmas</p>
+            <p className="print-cover-count">{sortedSongs.length} carols &nbsp; | &nbsp; English and Malayalam</p>
+          </div>
+        </section>
+        <section className="print-index">
+          <p className="print-eyebrow">St Marys OSC · Christmas songbook</p>
+          <h1>Contents</h1>
+          <p className="print-index-intro">A little music for a bright and joyful Christmas.</p>
+          <ol>
+            {sortedSongs.map((song, index) => (
+              <li key={song.title}>
+                <span className="print-index-number">{String(index + 1).padStart(2, "0")}</span>
+                <span>{song.title} ({String(index + 1).padStart(2, "0")})</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+        {sortedSongs.map((song, index) => (
+          <article className="print-song" key={song.title}>
+            <p className="print-eyebrow">Carol {String(index + 1).padStart(2, "0")} of {sortedSongs.length}</p>
+            <h1>{song.title}</h1>
+            <pre>{String(song.lyrics || "")}</pre>
+            {song.otherLangContent && <>
+              <h2>മലയാളം · Malayalam</h2>
+              <pre>{song.otherLangContent}</pre>
+            </>}
+          </article>
+        ))}
+      </div>
       {swipePreview && currentIndex != null && (
         <div
           className={`swipe-preview swipe-preview--${swipePreview.phase}`}

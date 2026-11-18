@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'st-marys-carols-';
-const CACHE_NAME = `${CACHE_PREFIX}v1`;
+const CACHE_NAME = `${CACHE_PREFIX}v2`;
 const APP_SHELL = new URL('./', self.registration.scope).href;
 
 self.addEventListener('install', (event) => {
@@ -40,14 +40,14 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => {
+    caches.open(CACHE_NAME).then((cache) => cache.match(request).then((cached) => {
       if (cached) return cached;
       return fetch(request).then((response) => {
         if (response.ok) {
-          event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone())));
+          event.waitUntil(cache.put(request, response.clone()));
         }
         return response;
       });
-    })
+    }))
   );
 });
